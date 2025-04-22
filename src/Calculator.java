@@ -83,7 +83,7 @@ public class Calculator {
                     JButton button = (JButton) e.getSource();
                     String buttonValue = button.getText();
                     if (Arrays.asList(rightSymbols).contains(buttonValue)){
-
+                        if ()
                     }
                     else if (Arrays.asList(topSymbols).contains(buttonValue)){
                         if (buttonValue == "AC"){
@@ -96,7 +96,9 @@ public class Calculator {
                             displayLabel.setText(removeZeroDecimal(numDisplay));
                         }
                         else if (buttonValue == "%"){
-
+                            double numDisplay = Double.parseDouble(displayLabel.getText());
+                            numDisplay /= 100;
+                            displayLabel.setText(removeZeroDecimal(numDisplay));
                         }
                     }
                     else{
