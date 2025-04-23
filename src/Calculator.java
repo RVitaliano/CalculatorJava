@@ -34,7 +34,7 @@ public class Calculator {
     String B = null;
 
     Calculator() {
-        frame.setVisible(true);
+
         frame.setSize(boardWidth, boardHeight);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
@@ -83,7 +83,33 @@ public class Calculator {
                     JButton button = (JButton) e.getSource();
                     String buttonValue = button.getText();
                     if (Arrays.asList(rightSymbols).contains(buttonValue)){
-                        if ()
+                        if (buttonValue == "="){
+                            if (A != null){
+                                B = displayLabel.getText();
+                                double numA = Double.parseDouble(A);
+                                double numB = Double.parseDouble(B);
+
+                                if (operator == "+"){
+                                    displayLabel.setText(removeZeroDecimal(numA + numB));
+                                }
+                                else if (operator == "-"){
+                                    displayLabel.setText(removeZeroDecimal(numA - numB));
+                                }
+                                else if (operator == "×"){
+                                    displayLabel.setText(removeZeroDecimal(numA * numB));
+                                }
+                                else if (operator == "÷"){
+                                    displayLabel.setText(removeZeroDecimal(numA / numB));
+                                }
+                            }
+                        } else if ("+-×÷".contains(buttonValue)) {
+                            if (operator == null) {
+                                A = displayLabel.getText();
+                                displayLabel.setText("0");
+                                B = "0";
+                            }
+                            operator = buttonValue;
+                        }
                     }
                     else if (Arrays.asList(topSymbols).contains(buttonValue)){
                         if (buttonValue == "AC"){
@@ -107,6 +133,10 @@ public class Calculator {
                                 displayLabel.setText(displayLabel.getText() + buttonValue);
                             }
                         }
+                        else if (buttonValue.equals("√")){
+                            double A = Double.parseDouble(displayLabel.getText());
+                            displayLabel.setText(String.valueOf(removeZeroDecimal(Math.sqrt(A))));
+                        }
                         else if ("0123456789".contains(buttonValue)){
                             if (displayLabel.getText() == "0"){
                                 displayLabel.setText(buttonValue);
@@ -119,6 +149,7 @@ public class Calculator {
                 }
             });
         }
+        frame.setVisible(true);
     }
 
     void clearAll(){
